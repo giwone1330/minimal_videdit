@@ -224,7 +224,7 @@ def main():
         if mask:
             cap.release()
             cv2.destroyAllWindows()
-            subprocess.call(f'ffmpeg -y -i {videodir} -vf "drawbox=x={x1-1}:y={y1-1}:w={x2-x1+2}:h={y2-y1+2}:color={box_color}@1:t=fill" -c:a copy {outputdir+"_mask.mp4"}', shell=True)
+            subprocess.call(f'ffmpeg -y -i {videodir} -vf "drawbox=x={x1-1}:y={y1-1}:w={x2-x1+3}:h={y2-y1+3}:color={box_color}@1:t=fill" -c:a copy {outputdir+"_mask.mp4"}', shell=True)
             break
 
 
@@ -232,7 +232,7 @@ def main():
         elif crop:
             cap.release()
             cv2.destroyAllWindows()
-            width, height = x2-x1+2, y2-y1+2
+            width, height = x2-x1+3, y2-y1+3
             width = width-width%4
             height = height-height%4
             subprocess.call(f'ffmpeg -y -i {videodir} -vf "crop={width}:{height}:{x1-1}:{y1-1}" -c:a copy {outputdir+"_crop.mp4"}')
